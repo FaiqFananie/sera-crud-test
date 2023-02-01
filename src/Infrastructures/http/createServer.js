@@ -2,9 +2,9 @@ const express = require('express')
 require('dotenv').config()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-// const routes = require('../../Interfaces/routes/route')
+const routes = require('../../Interfaces/routes/route')
 
-const createServer = () => {
+const createServer = (container) => {
   const app = express()
   app.use(bodyParser.json({ limit: '5mb', type: 'application/json' }))
   app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }))
@@ -12,11 +12,7 @@ const createServer = () => {
   app.use(express.json({ limit: '5mb', type: 'application/json' }))
   app.use(express.urlencoded({ limit: '5mb', extended: true }))
 
-  app.get('/', (_, res) => {
-    res.json('hello world')
-  })
-  // routes(app, container, middleware)
-  // app.use(middleware.responseError)
+  routes(app, container)
 
   return app
 }

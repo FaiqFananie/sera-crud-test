@@ -20,8 +20,22 @@ exports.up = pgm => {
     price: {
       type: 'INTEGER',
       notNull: true
+    },
+    created_at: {
+      type: 'TIMESTAMP',
+      notNull: true
+    },
+    updated_at: {
+      type: 'TIMESTAMP',
+      notNull: true
+    },
+    is_delete: {
+      type: 'BOOLEAN',
+      notNull: true
     }
   })
 }
 
-exports.down = pgm => {}
+exports.down = pgm => {
+  pgm.dropTable('products')
+}
