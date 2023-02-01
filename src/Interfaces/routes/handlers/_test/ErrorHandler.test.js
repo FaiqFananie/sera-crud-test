@@ -4,12 +4,13 @@ const { expect } = require('chai')
 const sinon = require('sinon')
 const test = require('supertest')
 const createServer = require('../../../../Infrastructures/http/createServer')
+const container = require('../../../../Infrastructures/container')
 
 describe('ErrorHandler', () => {
   describe('responseError', () => {
     it('should return 404 when it is Not Found Error', () => {
       // Arrange
-      const errorHandler = new ErrorHandler()
+      const errorHandler = new ErrorHandler(container)
       const error = new NotFoundError('Product gagal diperbarui, Id tidak ditemukan')
       const req = {}
       const res = {
@@ -30,7 +31,7 @@ describe('ErrorHandler', () => {
 
     it('should return 400 when it is InvariantError', () => {
       // Arrange
-      const errorHandler = new ErrorHandler()
+      const errorHandler = new ErrorHandler(container)
       const error = new Error('PRODUCT_PAYLOAD.NOT_CONTAIN_NEEDED_PROPERTY')
       const req = {}
       const res = {
@@ -51,7 +52,7 @@ describe('ErrorHandler', () => {
 
     it('should return 500 when it is unexplained error', () => {
       // Arrange
-      const errorHandler = new ErrorHandler()
+      const errorHandler = new ErrorHandler(container)
       const error = new Error('UNEXPLAINED_ERROR')
       const req = {}
       const res = {

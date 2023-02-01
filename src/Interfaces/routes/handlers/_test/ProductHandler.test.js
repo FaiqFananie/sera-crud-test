@@ -63,6 +63,7 @@ describe('/products endpoint', () => {
       // Assert
       expect(response.statusCode).to.equal(201)
       expect(response.body.status).to.equal('success')
+      expect(response.body.data.id).to.exist
     })
   })
 })

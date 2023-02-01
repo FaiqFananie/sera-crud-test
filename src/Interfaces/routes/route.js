@@ -3,7 +3,7 @@ const ProductHandler = require('./handlers/ProductHandler')
 
 const routes = (app, container) => {
   const productHandler = new ProductHandler(container)
-  const errorHandler = new ErrorHandler()
+  const errorHandler = new ErrorHandler(container)
 
   app.get('/', (_, res) => {
     res.json('hello world')
