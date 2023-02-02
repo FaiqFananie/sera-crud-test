@@ -70,4 +70,38 @@ describe('ProductRepositoryPostgres', () => {
       expect(product[0].price).to.equal(payload.price)
     })
   })
+
+  describe('getProduct Function', () => {
+    it('should throw error with statuscode 404 when product is not found', async () => {
+      // Arrange
+      const productRepositoryPostgres = new ProductRepositoryPostgres(pool, {})
+
+      // Action and Assert
+      return expect(productRepositoryPostgres.getProduct('product-123'))
+        .to.be.rejectedWith(NotFoundError, 'Id tidak ditemukan')
+    })
+
+    it('should persist product get payload correctly', async () => {
+      // Arrange
+      const payload = {
+        id: 'product-123',
+        name: 'Macbook PRO 13',
+        qty: 1,
+        price: 14000000
+      }
+      const productId = await ProductsTableTestHelper.addProduct(payload)
+
+      const productRepositoryPostgres = new ProductRepositoryPostgres(pool, {})
+
+      // Action
+      const product = await productRepositoryPostgres.getProduct(productId)
+
+      // Assert
+      expect(product.name).to.equal(payload.name)
+      expect(product.qty).to.equal(payload.qty)
+      expect(product.price).to.equal(payload.price)
+      expect(product.created_at).to.exist
+      expect(product.updated_at).to.exist
+    })
+  })
 })

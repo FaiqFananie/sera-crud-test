@@ -37,6 +37,19 @@ class ProductRepositoryPostgres extends ProductRepository {
       throw new NotFoundError('Produk gagal diperbarui, Id tidak ditemukan')
     }
   }
+
+  async getProduct (id) {
+    const query = {
+      text: 'SELECT id, name, qty, price, created_at, updated_at FROM products WHERE id = $1 AND is_delete = false ORDER BY created_at',
+      values: [id]
+    }
+
+    const result = await this._pool.query(query)
+    if (!result.rowCount) {
+      throw new NotFoundError('Id tidak ditemukan')
+    }
+    return result.rows[0]
+  }
 }
 
 module.exports = ProductRepositoryPostgres

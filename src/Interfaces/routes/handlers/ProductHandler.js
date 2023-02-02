@@ -1,5 +1,6 @@
 const AddProductUseCase = require('../../../Applications/use_case/AddProductUseCase')
 const EditProductUseCase = require('../../../Applications/use_case/EditProductUseCase')
+const GetProductUseCase = require('../../../Applications/use_case/GetProductUseCase')
 
 class ProductHandler {
   constructor (container) {
@@ -7,6 +8,7 @@ class ProductHandler {
 
     this.postProductHandler = this.postProductHandler.bind(this)
     this.putProductHandler = this.putProductHandler.bind(this)
+    this.getProductHandler = this.getProductHandler.bind(this)
   }
 
   async postProductHandler (req, res, next) {
@@ -34,6 +36,23 @@ class ProductHandler {
       return res.status(200).json({
         status: 'success',
         message: 'Produk berhasil diperbarui'
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getProductHandler (req, res, next) {
+    try {
+      const { id } = req.params
+      const getProductUseCase = this._container.getInstance(GetProductUseCase.name)
+      const product = await getProductUseCase.execute(id)
+
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          product
+        }
       })
     } catch (error) {
       next(error)

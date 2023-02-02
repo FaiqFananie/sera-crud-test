@@ -80,7 +80,7 @@ describe('/products endpoint', () => {
       }
 
       // Action
-      const response = await test(server).put('/api/products/product-126').send(requestPayload)
+      const response = await test(server).put('/api/products/product-123').send(requestPayload)
 
       // Assert
       expect(response.status).to.equal(404)
@@ -90,7 +90,7 @@ describe('/products endpoint', () => {
 
     it('should return status 400 when request payload not contain needed property', async () => {
       // Arrange
-      await ProductsTableTestHelper.addProduct({ id: 'product-126', name: 'Macbook PRO 13', price: 13000000 })
+      await ProductsTableTestHelper.addProduct({ id: 'product-123', name: 'Macbook PRO 13', price: 13000000 })
       const requestPayload = {
         name: 'Macbook PRO 14',
         qty: 1
@@ -107,7 +107,7 @@ describe('/products endpoint', () => {
 
     it('should return status 400 when request payload not meet data type specification', async () => {
       // Arrange
-      await ProductsTableTestHelper.addProduct({ id: 'product-124', name: 'Macbook PRO 13', price: 13000000 })
+      await ProductsTableTestHelper.addProduct({ id: 'product-123', name: 'Macbook PRO 13', price: 13000000 })
       const requestPayload = {
         name: 'Macbook PRO 14',
         qty: [],
@@ -115,7 +115,7 @@ describe('/products endpoint', () => {
       }
 
       // Action
-      const response = await test(server).put('/api/products/product-124').send(requestPayload)
+      const response = await test(server).put('/api/products/product-123').send(requestPayload)
 
       // Assert
       expect(response.status).to.equal(400)
@@ -125,7 +125,7 @@ describe('/products endpoint', () => {
 
     it('should update product when product is found', async () => {
       // Arrange
-      await ProductsTableTestHelper.addProduct({ id: 'product-125', name: 'Macbook PRO 13', price: 13000000 })
+      await ProductsTableTestHelper.addProduct({ id: 'product-123', name: 'Macbook PRO 13', price: 13000000 })
       const requestPayload = {
         name: 'Macbook PRO 14',
         qty: 1,
@@ -133,12 +133,37 @@ describe('/products endpoint', () => {
       }
 
       // Action
-      const response = await test(server).put('/api/products/product-125').send(requestPayload)
+      const response = await test(server).put('/api/products/product-123').send(requestPayload)
 
       // Assert
       expect(response.status).to.equal(200)
       expect(response.body.status).to.equal('success')
       expect(response.body.message).to.equal('Produk berhasil diperbarui')
+    })
+  })
+
+  describe('GET /products/:id', () => {
+    it('should return status 404 when product is not found', async () => {
+      // Arrange & Action
+      const response = await test(server).get('/api/products/product-123')
+
+      // Assert
+      expect(response.status).to.equal(404)
+      expect(response.body.status).to.equal('fail')
+      expect(response.body.message).to.equal('Id tidak ditemukan')
+    })
+
+    it('should show product when product is found', async () => {
+      // Arrange
+      await ProductsTableTestHelper.addProduct({ id: 'product-123', name: 'Macbook PRO 13', price: 13000000 })
+
+      // Action
+      const response = await test(server).get('/api/products/product-123')
+
+      // Assert
+      expect(response.status).to.equal(200)
+      expect(response.body.status).to.equal('success')
+      // expect(response.body.message).to.equal('Produk berhasil diperbarui')
     })
   })
 })
