@@ -1,0 +1,940 @@
+{
+	"info": {
+		"_postman_id": "fc40dfd5-6bed-4760-89f8-ec21c6ec75c7",
+		"name": "SERA-crud-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3841867"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Macbook PRO 13\",\n    \"qty\": 1,\n    \"price\": 13000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uri}}/api/products",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 13\",\n    \"qty\": 1,\n    \"price\": 13000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"42-zZZECL3z2NMrESbbUYWRElU6Xy8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:39:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"id\": \"product-lvIxt1Vsj635278WtwWqR\"\n    }\n}"
+						},
+						{
+							"name": "Error When Request Is Not Enough",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 13\",\n    \"qty\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-u0W2F7YcfCbrhPswJG8snh60HkU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:43:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat membuat/mengubah produk karena properti yang dibutuhkan tidak ada\"\n}"
+						},
+						{
+							"name": "Error When Request Body Not Meet Specification",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 13\",\n    \"qty\": 1,\n    \"price\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-SqWRf+Lla6G6mbWhDa22dm0mVAo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:44:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat membuat/mengubah produk karena tipe data tidak sesuai\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Show Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{uri}}/api/products/:id",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "product-lvIxt1Vsj635278WtwWqR"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-lvIxt1Vsj635278WtwWqR"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "205"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cd-x9OK6dINZwsfzEQytDbiReHjK0I\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:40:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"product\": {\n            \"id\": \"product-lvIxt1Vsj635278WtwWqR\",\n            \"name\": \"Macbook PRO 13\",\n            \"qty\": 1,\n            \"price\": 13000000,\n            \"createdAt\": \"2023-02-02T07:39:54.200Z\",\n            \"updatedAt\": \"2023-02-02T07:39:54.200Z\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Error When ID Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-999"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-1hWnRtXY4j3U2TjosUdClMJ5kS8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:43:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"Id tidak ditemukan\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Show All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{uri}}/api/products",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Show All Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/api/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "208"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d0-mHgEGdzSrAUg/x7rpz67MJ9Nd9k\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:41:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"products\": [\n            {\n                \"id\": \"product-lvIxt1Vsj635278WtwWqR\",\n                \"name\": \"Macbook PRO 13\",\n                \"qty\": 1,\n                \"price\": 13000000,\n                \"createdAt\": \"2023-02-02T07:39:54.200Z\",\n                \"updatedAt\": \"2023-02-02T07:39:54.200Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Macbook PRO 14\",\n    \"qty\": 1,\n    \"price\": 14000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uri}}/api/products/:id",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "product-lvIxt1Vsj635278WtwWqR"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Product",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 14\",\n    \"qty\": 1,\n    \"price\": 14000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-lvIxt1Vsj635278WtwWqR"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3b-ELnRZ9yuDFJ4XSzuEqcsdITC9Ho\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:42:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Produk berhasil diperbarui\"\n}"
+						},
+						{
+							"name": "Error When ID Is Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 14\",\n    \"qty\": 1,\n    \"price\": 14000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-999"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"49-AAnYVFWd47t+JnsuaEg/0GxNvg0\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:45:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"Produk gagal diperbarui, Id tidak ditemukan\"\n}"
+						},
+						{
+							"name": "Error When Request Is Not Enough",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 14\",\n    \"qty\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-lvIxt1Vsj635278WtwWqR"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6b-u0W2F7YcfCbrhPswJG8snh60HkU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:46:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat membuat/mengubah produk karena properti yang dibutuhkan tidak ada\"\n}"
+						},
+						{
+							"name": "Error When Request Body Not Meet Data Specification",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Macbook PRO 14\",\n    \"qty\": 1,\n    \"price\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-lvIxt1Vsj635278WtwWqR"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "95"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5f-SqWRf+Lla6G6mbWhDa22dm0mVAo\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:47:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat membuat/mengubah produk karena tipe data tidak sesuai\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{uri}}/api/products/:id",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"api",
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "product-lvIxt1Vsj635278WtwWqR"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Product",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-lvIxt1Vsj635278WtwWqR"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38-awMaJOUIKpqZsrA4R8+s0SUS7xY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:48:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Produk berhasil dihapus\"\n}"
+						},
+						{
+							"name": "Error When ID Is Not Found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/api/products/:id",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"products",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "product-999"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"46-oDMe69pAk7NyJBZ83PiQvDISnug\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Feb 2023 07:49:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"Produk gagal dihapus, Id tidak ditemukan\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

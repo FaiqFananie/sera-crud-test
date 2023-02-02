@@ -8,7 +8,8 @@
     "start:dev": "nodemon src/app.js",
     "test": "mocha \"./src/**/*.test.js\" -r dotenv/config",
     "test:watch": "nyc --reporter=text mocha \"./src/**/*.test.js\" -r dotenv/config",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "lint": "npx eslint"
   },
   "keywords": [],
   "author": "",
