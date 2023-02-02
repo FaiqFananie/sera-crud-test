@@ -13,6 +13,9 @@ const routes = (app, container) => {
   app.route('/api/products')
     .post(productHandler.postProductHandler)
     .all(errorHandler.responseMethodNotAllowed)
+  app.route('/api/products/:id')
+    .put(productHandler.putProductHandler)
+    .all(errorHandler.responseMethodNotAllowed)
 
   app.use(errorHandler.responseError)
 }

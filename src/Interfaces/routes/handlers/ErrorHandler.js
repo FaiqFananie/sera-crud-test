@@ -13,6 +13,7 @@ class ErrorHandler {
   responseError (error, req, res, next) {
     const logger = this._container.getInstance(Logger.name)
     const translatedError = DomainErrorTranslator.translate(error)
+    console.log(req.originalUrl)
 
     if (translatedError instanceof ClientError) {
       logger.printLog(req.originalUrl, translatedError.statusCode, req.method, req.ip, translatedError.message)
@@ -25,6 +26,7 @@ class ErrorHandler {
     }
 
     logger.printLog(req.originalUrl, 500, req.method, req.ip, error.message)
+    console.log(error)
     res.status(500)
     res.json({
       status: 'fail',
