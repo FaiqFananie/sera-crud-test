@@ -163,7 +163,23 @@ describe('/products endpoint', () => {
       // Assert
       expect(response.status).to.equal(200)
       expect(response.body.status).to.equal('success')
-      // expect(response.body.message).to.equal('Produk berhasil diperbarui')
+      expect(response.body.data.product).to.be.exist
+    })
+  })
+
+  describe('GET /products', () => {
+    it('should show All products ', async () => {
+      // Arrange
+      await ProductsTableTestHelper.addProduct({ id: 'product-123', name: 'Macbook PRO 13', price: 13000000 })
+      await ProductsTableTestHelper.addProduct({ id: 'product-124', name: 'Macbook PRO 14', price: 14000000 })
+
+      // Action
+      const response = await test(server).get('/api/products')
+
+      // Assert
+      expect(response.status).to.equal(200)
+      expect(response.body.status).to.equal('success')
+      expect(response.body.data.products).to.have.length(2)
     })
   })
 })

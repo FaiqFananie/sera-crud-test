@@ -38,17 +38,34 @@ class ProductRepositoryPostgres extends ProductRepository {
     }
   }
 
-  async getProduct (id) {
+  async getProduct (productId) {
     const query = {
-      text: 'SELECT id, name, qty, price, created_at, updated_at FROM products WHERE id = $1 AND is_delete = false ORDER BY created_at',
-      values: [id]
+      text: 'SELECT id, name, qty, price, created_at AS createdat, updated_at AS updatedat FROM products WHERE id = $1 AND is_delete = false ORDER BY updated_at',
+      values: [productId]
     }
 
     const result = await this._pool.query(query)
     if (!result.rowCount) {
       throw new NotFoundError('Id tidak ditemukan')
     }
-    return result.rows[0]
+
+    const { id, name, qty, price, createdat: createdAt, updatedat: updatedAt } = result.rows[0]
+    return { id, name, qty, price, createdAt, updatedAt }
+  }
+
+  async getAllProducts () {
+    const query = 'SELECT id, name, qty, price, created_at AS createdat, updated_at AS updatedat FROM products WHERE is_delete = false ORDER BY updated_at'
+
+    const result = await this._pool.query(query)
+
+    return result.rows.map(v => ({
+      id: v.id,
+      name: v.name,
+      qty: v.qty,
+      price: v.price,
+      createdAt: v.createdat,
+      updatedAt: v.updatedat
+    }))
   }
 }
 

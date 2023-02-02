@@ -1,5 +1,6 @@
 const AddProductUseCase = require('../../../Applications/use_case/AddProductUseCase')
 const EditProductUseCase = require('../../../Applications/use_case/EditProductUseCase')
+const GetAllProductsUseCase = require('../../../Applications/use_case/GetAllProductsUseCase')
 const GetProductUseCase = require('../../../Applications/use_case/GetProductUseCase')
 
 class ProductHandler {
@@ -9,6 +10,7 @@ class ProductHandler {
     this.postProductHandler = this.postProductHandler.bind(this)
     this.putProductHandler = this.putProductHandler.bind(this)
     this.getProductHandler = this.getProductHandler.bind(this)
+    this.getAllProductsHandler = this.getAllProductsHandler.bind(this)
   }
 
   async postProductHandler (req, res, next) {
@@ -57,6 +59,18 @@ class ProductHandler {
     } catch (error) {
       next(error)
     }
+  }
+
+  async getAllProductsHandler (req, res, next) {
+    const getAllProductsUseCase = this._container.getInstance(GetAllProductsUseCase.name)
+    const result = await getAllProductsUseCase.execute()
+
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        products: result.products
+      }
+    })
   }
 }
 

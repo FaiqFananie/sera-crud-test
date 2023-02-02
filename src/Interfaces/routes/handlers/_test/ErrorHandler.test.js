@@ -78,7 +78,7 @@ describe('ErrorHandler', () => {
       const server = createServer({})
 
       // Action
-      const response = await test(server).get('/api/products')
+      const response = await test(server).put('/api/products')
 
       // Assert
       expect(response.statusCode).to.equal(405)

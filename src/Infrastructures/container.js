@@ -14,6 +14,7 @@ const EditProductUseCase = require('../Applications/use_case/EditProductUseCase'
 const GetProductUseCase = require('../Applications/use_case/GetProductUseCase')
 const Logger = require('../Applications/debug/Logger')
 const WinstonLogger = require('./debug/WinstonLogger')
+const GetAllProductsUseCase = require('../Applications/use_case/GetAllProductsUseCase')
 
 // creating container
 const container = createContainer()
@@ -78,6 +79,19 @@ container.register([
   {
     key: GetProductUseCase.name,
     Class: GetProductUseCase,
+    parameter: {
+      injectType: 'destructuring',
+      dependencies: [
+        {
+          name: 'productRepository',
+          internal: ProductRepository.name
+        }
+      ]
+    }
+  },
+  {
+    key: GetAllProductsUseCase.name,
+    Class: GetAllProductsUseCase,
     parameter: {
       injectType: 'destructuring',
       dependencies: [

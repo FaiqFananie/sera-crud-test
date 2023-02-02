@@ -100,8 +100,48 @@ describe('ProductRepositoryPostgres', () => {
       expect(product.name).to.equal(payload.name)
       expect(product.qty).to.equal(payload.qty)
       expect(product.price).to.equal(payload.price)
-      expect(product.created_at).to.exist
-      expect(product.updated_at).to.exist
+      expect(product.createdAt).to.exist
+      expect(product.updatedAt).to.exist
+    })
+  })
+
+  describe('getAllProduct Function', () => {
+    it('should show all products', async () => {
+      // Arrange
+      await ProductsTableTestHelper.addProduct({ id: 'product-123' })
+      await ProductsTableTestHelper.addProduct({ id: 'product-124' })
+
+      const productRepositoryPostgres = new ProductRepositoryPostgres(pool, {})
+
+      // Action
+      const products = await productRepositoryPostgres.getAllProducts()
+
+      // Assert
+      expect(products).to.have.length(2)
+      expect(products[0].id).to.equal('product-123')
+      expect(products[0].name).to.exist
+      expect(products[0].qty).to.exist
+      expect(products[0].price).to.exist
+      expect(products[0].createdAt).to.exist
+      expect(products[0].updatedAt).to.exist
+      expect(products[1].id).to.equal('product-124')
+      expect(products[1].name).to.exist
+      expect(products[1].qty).to.exist
+      expect(products[1].price).to.exist
+      expect(products[1].createdAt).to.exist
+      expect(products[1].updatedAt).to.exist
+    })
+
+    it('should show empty array when product is empty', async () => {
+      // Arrange
+      const productRepositoryPostgres = new ProductRepositoryPostgres(pool, {})
+
+      // Action
+      const products = await productRepositoryPostgres.getAllProducts()
+
+      // Assert
+      expect(Array.isArray(products)).to.equal(true)
+      expect(products).to.have.length(0)
     })
   })
 })
