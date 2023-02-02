@@ -67,6 +67,18 @@ class ProductRepositoryPostgres extends ProductRepository {
       updatedAt: v.updatedat
     }))
   }
+
+  async deleteProduct (id) {
+    const query = {
+      text: 'UPDATE products SET is_delete = true WHERE id = $1',
+      values: [id]
+    }
+
+    const result = await this._pool.query(query)
+    if (!result.rowCount) {
+      throw new NotFoundError('Produk gagal dihapus, Id tidak ditemukan')
+    }
+  }
 }
 
 module.exports = ProductRepositoryPostgres

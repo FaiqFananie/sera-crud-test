@@ -18,7 +18,7 @@ const ProductsTableTestHelper = {
 
   async findProductById (id) {
     const query = {
-      text: 'SELECT * FROM products WHERE id = $1',
+      text: 'SELECT * FROM products WHERE id = $1 AND is_delete = false',
       values: [id]
     }
 

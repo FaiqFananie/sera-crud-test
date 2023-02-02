@@ -7,14 +7,15 @@ const { nanoid } = require('nanoid')
 const pool = require('./database/postgres/pool')
 const winston = require('./winston')
 
+const Logger = require('../Applications/debug/Logger')
+const WinstonLogger = require('./debug/WinstonLogger')
 const ProductRepository = require('../Domains/products/ProductRepository')
 const ProductRepositoryPostgres = require('../Infrastructures/repository//ProductRepositoryPostgres')
 const AddProductUseCase = require('../Applications/use_case/AddProductUseCase')
 const EditProductUseCase = require('../Applications/use_case/EditProductUseCase')
 const GetProductUseCase = require('../Applications/use_case/GetProductUseCase')
-const Logger = require('../Applications/debug/Logger')
-const WinstonLogger = require('./debug/WinstonLogger')
 const GetAllProductsUseCase = require('../Applications/use_case/GetAllProductsUseCase')
+const DeleteProductUseCase = require('../Applications/use_case/DeleteProductUseCase')
 
 // creating container
 const container = createContainer()
@@ -92,6 +93,19 @@ container.register([
   {
     key: GetAllProductsUseCase.name,
     Class: GetAllProductsUseCase,
+    parameter: {
+      injectType: 'destructuring',
+      dependencies: [
+        {
+          name: 'productRepository',
+          internal: ProductRepository.name
+        }
+      ]
+    }
+  },
+  {
+    key: DeleteProductUseCase.name,
+    Class: DeleteProductUseCase,
     parameter: {
       injectType: 'destructuring',
       dependencies: [

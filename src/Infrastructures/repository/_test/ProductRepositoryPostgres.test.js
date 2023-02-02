@@ -144,4 +144,29 @@ describe('ProductRepositoryPostgres', () => {
       expect(products).to.have.length(0)
     })
   })
+
+  describe('deleteProduct Function', () => {
+    it('should throw error with statuscode 404 when product is not found', async () => {
+      // Arrange
+      const productRepositoryPostgres = new ProductRepositoryPostgres(pool, {})
+
+      // Action and Assert
+      return expect(productRepositoryPostgres.deleteProduct('product-123'))
+        .to.be.rejectedWith(NotFoundError, 'Produk gagal dihapus, Id tidak ditemukan')
+    })
+
+    it('should persist product update payload correctly', async () => {
+      // Arrange
+      const productId = await ProductsTableTestHelper.addProduct({ id: 'product-123', name: 'Macbook PRO 13', price: 14000000 })
+
+      const productRepositoryPostgres = new ProductRepositoryPostgres(pool, {})
+
+      // Action
+      await productRepositoryPostgres.deleteProduct(productId)
+
+      // Assert
+      const product = await ProductsTableTestHelper.findProductById(productId)
+      expect(product).to.have.length(0)
+    })
+  })
 })
