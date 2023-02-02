@@ -6,6 +6,7 @@ const { createContainer } = require('instances-container')
 const { nanoid } = require('nanoid')
 const pool = require('./database/postgres/pool')
 const winston = require('./winston')
+const amqp = require('amqplib')
 
 const Logger = require('../Applications/debug/Logger')
 const WinstonLogger = require('./debug/WinstonLogger')
@@ -16,6 +17,9 @@ const EditProductUseCase = require('../Applications/use_case/EditProductUseCase'
 const GetProductUseCase = require('../Applications/use_case/GetProductUseCase')
 const GetAllProductsUseCase = require('../Applications/use_case/GetAllProductsUseCase')
 const DeleteProductUseCase = require('../Applications/use_case/DeleteProductUseCase')
+const QueueRepository = require('../Domains/queues/QueueRepository')
+const ProducerService = require('./rabbitmq/Producer')
+const SendMessageQueueUseCase = require('../Applications/use_case/SendMessageQueueUseCase')
 
 // creating container
 const container = createContainer()
@@ -32,6 +36,17 @@ container.register([
         },
         {
           concrete: nanoid
+        }
+      ]
+    }
+  },
+  {
+    key: QueueRepository.name,
+    Class: ProducerService,
+    parameter: {
+      dependencies: [
+        {
+          concrete: amqp
         }
       ]
     }
@@ -112,6 +127,19 @@ container.register([
         {
           name: 'productRepository',
           internal: ProductRepository.name
+        }
+      ]
+    }
+  },
+  {
+    key: SendMessageQueueUseCase.name,
+    Class: SendMessageQueueUseCase,
+    parameter: {
+      injectType: 'destructuring',
+      dependencies: [
+        {
+          name: 'queueRepository',
+          internal: QueueRepository.name
         }
       ]
     }
