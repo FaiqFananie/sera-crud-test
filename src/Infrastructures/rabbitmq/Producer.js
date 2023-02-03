@@ -16,7 +16,7 @@ class ProducerService extends QueueRepository {
       durable: true
     })
 
-    await channel.sendToQueue(queue, Buffer.from(targetEmail))
+    await channel.sendToQueue(queue, Buffer.from(JSON.stringify(targetEmail)))
 
     setTimeout(() => {
       connection.close()

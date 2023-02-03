@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "fc40dfd5-6bed-4760-89f8-ec21c6ec75c7",
-		"name": "SERA-crud-test",
+		"name": "SERA-test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3841867"
 	},
@@ -931,6 +931,295 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"Produk gagal dihapus, Id tidak ditemukan\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Export",
+			"item": [
+				{
+					"name": "Export Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"targetEmail\": \"faiqzigofananie.95@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{uri}}/api/exports/products",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"api",
+								"exports",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Export Products",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"targetEmail\": \"faiqzigofananie.95@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/exports/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"exports",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39-1KmPpCacpfPpo/wuFx55qN3oKrw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Feb 2023 08:04:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Permintaan dalam antrean\"\n}"
+						},
+						{
+							"name": "Error when request body not in email format",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"targetEmail\": \"faiqzigofananie\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/exports/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"exports",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"62-ELqhkzhnVhakCfOb2pdeRSvYJck\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Feb 2023 08:05:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat menambahkan antrean produk karena tipe data tidak sesuai\"\n}"
+						},
+						{
+							"name": "Error when request body not meet data sepcification",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"targetEmail\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/api/exports/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"exports",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "98"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"62-ELqhkzhnVhakCfOb2pdeRSvYJck\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Feb 2023 08:06:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat menambahkan antrean produk karena tipe data tidak sesuai\"\n}"
+						},
+						{
+							"name": "Error when request is not enough",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/api/exports/products",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"api",
+										"exports",
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "103"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"67-JxclcJIH1zaYtRh4LIWJ3HEy/D0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Feb 2023 08:06:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"tidak dapat menambahkan antrean karena properti yang dibutuhkan tidak ada\"\n}"
 						}
 					]
 				}

@@ -17,7 +17,6 @@ class QueuePayload {
     if (typeof queue !== 'string' || typeof targetEmail !== 'string' || regexExp.test(targetEmail) !== true) {
       throw new Error('QUEUE_PAYLOAD.NOT_MEET_DATA_TYPE_SPECIFICATION')
     }
-    console.log(regexExp.test(targetEmail))
   }
 }
 
